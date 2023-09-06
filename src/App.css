@@ -1,0 +1,278 @@
+.forcards {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  margin-left: 120px;
+  padding-left: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+}
+.forcards .forimage {
+  display: flex;
+  align-items: center;
+}
+.forcards .forproductdetails {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  margin-left: 40px;
+}
+.forcards .savefifteen {
+  margin-left: 100px;
+  margin-top: 100px;
+  width: 90px;
+  height: 40px;
+  display: flex;
+  color: white;
+  font-weight: 600;
+  justify-content: center;
+  align-items: center;
+  border-radius: 6px;
+  background-color: #D62850;
+}
+.forcards .price {
+  margin-top: 105px;
+  margin-left: 35px;
+  font-weight: 700;
+  font-size: 20px;
+}
+.forcards .oldmrp {
+  margin-top: 112px;
+  margin-left: 10px;
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.forcards .oldmrp hr {
+  position: absolute;
+  width: 54px;
+  top: 2px;
+}
+
+.forproductdetails {
+  width: 280px;
+}
+.forproductdetails .cardtitleandveg {
+  display: flex;
+  position: relative;
+}
+.forproductdetails .cardtitleandveg .cardtitle {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
+}
+.forproductdetails .cardtitleandveg .rectangle {
+  margin-left: 30px;
+}
+.forproductdetails .cardtitleandveg .ellipse {
+  position: absolute;
+  top: 4.5px;
+  right: 3px;
+}
+.forproductdetails .cardbrand {
+  margin-top: 8px;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.forproductdetails .forproductsadd {
+  margin-top: 8px;
+}
+
+.forproductsadd {
+  display: flex;
+}
+.forproductsadd .minus {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border-style: none;
+  background-color: #116AB3;
+  color: white;
+  margin-right: 7px;
+  font-size: 22px;
+}
+.forproductsadd .numberofproducts {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  margin: 3px;
+  width: 60px;
+  height: 28px;
+}
+.forproductsadd .plus {
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  border-style: none;
+  background-color: #116AB3;
+  color: white;
+  margin-left: 7px;
+  font-size: 20px;
+}
+
+.offerdetails {
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  margin-left: 15px;
+  padding: 14px;
+  width: 320px;
+  margin-bottom: 15px;
+  background-color: rgb(255, 255, 255);
+}
+
+.codeandradio {
+  display: flex;
+}
+
+.code {
+  font-weight: 600;
+}
+
+.radiobutton {
+  margin-left: 210px;
+}
+
+.getfifty {
+  color: #27962B;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 13px;
+}
+
+.codeline {
+  margin-bottom: 8px;
+}
+
+.codedetails {
+  font-size: 12px;
+  margin-right: 20px;
+}
+
+.wholepart {
+  background-color: rgba(0, 0, 0, 0.03);
+  padding-bottom: 30px;
+}
+
+.myshoppingcart {
+  padding-left: 100px;
+  padding-top: 100px;
+  color: #116AB3;
+  font-size: 30px;
+  font-weight: 600;
+}
+
+.cardsandcalculation {
+  display: flex;
+}
+
+.cardshere {
+  display: flex;
+  flex-direction: column;
+}
+
+.forcalculation {
+  margin-left: 50px;
+}
+
+.forapplycoupon {
+  display: flex;
+  background-color: #EEF4FA;
+  padding-left: 25px;
+  height: 55px;
+  width: 350px;
+  margin-bottom: 20px;
+}
+
+.offerpercent {
+  display: flex;
+  align-items: center;
+}
+
+.applycoupon {
+  display: flex;
+  align-items: center;
+  margin-left: 40px;
+}
+
+.vectorsymbol {
+  display: flex;
+  align-items: center;
+  margin-left: 110px;
+}
+
+.summaryandlistbox {
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 5px;
+  margin-left: 16px;
+  width: 345px;
+  margin-top: 30px;
+  background-color: rgb(255, 255, 255);
+}
+.summaryandlistbox .ordersummary {
+  display: flex;
+  justify-content: center;
+  padding-top: 25px;
+  padding-bottom: 10px;
+  font-weight: 500;
+  font-size: 19px;
+  color: rgba(0, 0, 0, 0.8);
+}
+.summaryandlistbox ul {
+  list-style: none;
+  font-size: 15px;
+  font-weight: 400;
+}
+.summaryandlistbox li {
+  display: flex;
+  margin-bottom: 7px;
+}
+.summaryandlistbox .calculationlist {
+  display: flex;
+  margin-left: 25px;
+}
+.summaryandlistbox #ordertotal {
+  font-weight: 500;
+  margin-top: 19px;
+  margin-bottom: 19px;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.checkout {
+  background-color: #116AB3;
+  width: 220px;
+  height: 45px;
+  margin-top: 40px;
+  margin-left: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  border-radius: 5px;
+}
+
+.services {
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  margin-left: 120px;
+  margin-top: 28px;
+  width: 1225px;
+  height: 100px;
+  background-color: rgb(255, 255, 255);
+  padding-left: 30px;
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.serviceimageandtitle {
+  margin-left: 80px;
+}
+
+.servicetitle {
+  font-size: 12px;
+}/*# sourceMappingURL=app.css.map */

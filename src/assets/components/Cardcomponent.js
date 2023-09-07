@@ -1,6 +1,7 @@
 import React from 'react';
 
-function Cardcomponent({cardimagehere,titlehere,rectangle,ellipse,brandhere}) {
+function Cardcomponent({cardimagehere,titlehere,rectangle,ellipse,brandhere,count,handleAddClick,handleminusClick,productprice,oldmrp}) {
+  
   return (
     <div className='forcards'> 
         <div className='forimage'><img src={cardimagehere} className='imagehere' height='120px' alt='cardimagehere'></img></div>
@@ -14,18 +15,21 @@ function Cardcomponent({cardimagehere,titlehere,rectangle,ellipse,brandhere}) {
 
     <div className='cardbrand'>{brandhere}</div>
 
-    <div className='forproductsadd'>
-      <div className='minusbutton'><button className='minus'>-</button></div>
-      <div className='numberofproducts'>1</div>
-      <div className='plusbutton'><button className='plus'>+</button></div>
+    <div>
+      <form className='forproductsadd'>
+        <input type='button' name='addsub' className='minusbutton minus' value='-' onClick={handleminusClick} />
+        <label for='addsub' className='numberofproducts'>{count}</label>
+        <input type='button' name='addsub' className='plusbutton plus' value='+' onClick={handleAddClick} />
+      </form>
+      
     </div>
 
 </div>
 
 <div className='savefifteen'>Save 15%</div>
-  <div className='price'>₹ 558</div>
+  <div className='price'>₹{productprice}</div>
 
-  <div className='oldmrp'>MRP ₹620
+  <div className='oldmrp'>MRP ₹{oldmrp}
   <hr></hr>
   </div>
     </div>

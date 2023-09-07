@@ -20,46 +20,78 @@ import Servicecomponent from './assets/components/Servicecomponent';
 import { useState } from 'react';
 
 function App() {
-  const carddetailshere = [{imagename:cardimageone,title:'Pedigree Chicken & Vegetables Adult Dry Dog Food 3 Kg',brand:'Brand : Pedigree'},
-  {imagename:cardimagetwo,title:'Pedigree Chicken & Vegetables Adult Dry Dog Food 10 Kg',brand:'Brand : Pedigree'},
-  {imagename:cardimagethree,title:'PURINA SUPERCOAT Puppy Dry Dog Food with Chicken 3 Kg',brand:'Brand : Purina'},
-  {imagename:cardimagefour,title:'Royal Canin Mini Starter New Born & Lactating Mother Dry Dog Food 1Kg',brand:'Brand : Royal Canin'},
-  {imagename:cardimagefive,title:'Drools Chicken & Egg Adult Dry Dog Food 3Kg',brand:'Brand : Drools'}];
+const [carddetailshere,setCarddetailshere] = useState([{imagename:cardimageone,count:1,productprice:558,oldmrp:658,title:'Pedigree Chicken & Vegetables Adult Dry Dog Food 3 Kg',brand:'Brand : Pedigree'},
+  {imagename:cardimagetwo,productprice:600,count:1,oldmrp:700,title:'Pedigree Chicken & Vegetables Adult Dry Dog Food 10 Kg',brand:'Brand : Pedigree'},
+  {imagename:cardimagethree,productprice:800,count:1,oldmrp:900,title:'PURINA SUPERCOAT Puppy Dry Dog Food with Chicken 3 Kg',brand:'Brand : Purina'},
+  {imagename:cardimagefour,productprice:300,count:1,oldmrp:400,title:'Royal Canin Mini Starter New Born & Lactating Mother Dry Dog Food 1Kg',brand:'Brand : Royal Canin'},
+  {imagename:cardimagefive,productprice:900,count:1,oldmrp:950,title:'Drools Chicken & Egg Adult Dry Dog Food 3Kg',brand:'Brand : Drools'}]);
 
-  const offerdetailshere = [{codehere:'SANCHU200',offerpercentage:'Get 50% Off',valuehere:'optionone'},
-  {codehere:'SANCHU100',offerpercentage:'Get 20% Off',valuehere:'optiontwo'}];
+  const offerdetailshere = [{codehere:'SANCHU200',offerpercentage:'Get 50% Off',valuehere:200},
+  {codehere:'SANCHU100',offerpercentage:'Get 20% Off',valuehere:100}];
 
   const servicedetailshere = [{serviceimage:codimage,servicetitle:'COD AVAILABLE'},
   {serviceimage:returnimage,servicetitle:'NO EXCHANGE & RETURNS'},{serviceimage:shippingimage,servicetitle:'FREE SHIPPING'},
   {serviceimage:paymentsimage,servicetitle:'SECURE PAYMENTS'},{serviceimage:contactlessimage,servicetitle:'CONTACT-LESS DELIVERY'},
   {serviceimage:contactlessimage,servicetitle:'CONTACT-LESS DELIVERY'}]
 
-  const [selectedOffer, setSelectedOffer] = useState(null);
-  const [discountAmount, setDiscountAmount] = useState(0);
+  const shipfee=10;
+  const gstfee=10;
 
-  const handleOfferChange = (event) => {
-    const selectedOfferValue = event.target.value;
-    let discount = 0;
+const [discount,setDiscount] = useState(0);
 
-    if (selectedOfferValue === 'offer1') {
-      discount = 100;
-    } else if (selectedOfferValue === 'offer2') {
-      discount = 200;
-    }
+const handleAddClick = (index) => {
+const updateproduct = [...carddetailshere];
+updateproduct[index].count=updateproduct[index].count + 1;
+setCarddetailshere(updateproduct);
+};
 
-    setSelectedOffer(selectedOfferValue);
-    setDiscountAmount(discount);
-  };
-  
+const handleminusClick = (index) => {
+  const updateproduct = [...carddetailshere];
+  if(updateproduct[index].count>1){
+    updateproduct[index].count=updateproduct[index].count - 1;
+setCarddetailshere(updateproduct);
+  }
+};
+
+const mrpvalue = (carddetailshere)=>{
+  let mrp=carddetailshere.reduce((total,priceofproduct)=>total+(priceofproduct.oldmrp*priceofproduct.count),0);
+// for(let i=0;i<carddetailshere.length;i++){
+// mrp=mrp+ carddetailshere[i].productprice;
+// }
+return mrp;
+};
+
+ const discountvalue = (carddetailshere)=>{
+  let sellingprice=carddetailshere.reduce((total,priceofproduct)=>total+(priceofproduct.productprice*priceofproduct.count),0);
+  let reducedprice = mrpvalue(carddetailshere)-sellingprice;
+  return reducedprice;
+ };
+
+ const handleChange = e => {
+  const target = e.target.value;
+  console.log(target,'target');
+  setDiscount(target);
+};
+ 
+ const subtot=(carddetailshere)=>{
+  let subtotal=mrpvalue(carddetailshere)-discountvalue(carddetailshere)-discount+shipfee;
+  return subtotal;
+ };
+
+ const ordertotal=(carddetailshere)=>{
+  let ordertot=subtot(carddetailshere)+gstfee;
+  return ordertot;
+ };
+
   return (
 
   <div className='wholepart'>
       <div className='myshoppingcart'>MY SHOPPING CART</div>
           <div className='cardsandcalculation'>
             <div className='cardshere'>
-            {carddetailshere.map(({imagename,title,brand},i) => {
+            {carddetailshere.map(({imagename,count,productprice,title,brand,oldmrp},i) => {
               return(
-                <Cardcomponent key={i} cardimagehere={imagename} titlehere={title} brandhere={brand} rectangle={rectangle} ellipse={ellipse} />
+                <Cardcomponent key={i} count={count} handleAddClick={()=>handleAddClick(i)} handleminusClick={()=>handleminusClick(i)} productprice={productprice}  oldmrp={oldmrp} cardimagehere={imagename} titlehere={title} brandhere={brand} rectangle={rectangle} ellipse={ellipse} />
               );
             })
             }
@@ -68,15 +100,15 @@ function App() {
           <div className='forcalculation'>
 
             <div className='forapplycoupon'>
-            <div className='offerpercent'><img src={offerpercent} height='20px'></img></div>
+            <div className='offerpercent'><img src={offerpercent} height='20px' alt='offerpercent'></img></div>
             <div className='applycoupon'>Apply Coupons Code</div>
-            <div className='vectorsymbol'><img src={vector}></img></div>
+            <div className='vectorsymbol'><img src={vector} alt='vector'></img></div>
             </div>
 
             <div>
               {offerdetailshere.map(({codehere,offerpercentage,valuehere},i) => {
                 return(
-                <Offercomponent key={i} id={valuehere} codehere={codehere} offerpercentage={offerpercentage} selected={selectedOffer} value={valuehere} handleOfferChange={this.handleOfferChange} />
+                <Offercomponent key={i} codehere={codehere} offerpercentage={offerpercentage} value={valuehere} handleOfferChange={handleChange} />
                 );
               })
               }
@@ -90,6 +122,7 @@ function App() {
                 <ul>
                   <li>MRP value</li>
                   <li>Discount Price</li>
+                  <li>Cart value</li>
                   <li>Promo Code Discount</li>
                   <li>Shipping Fee</li>
                   <li>Sub- Total</li>
@@ -98,13 +131,14 @@ function App() {
                 </ul>
                 
                 <ul>
-                  <li>333</li>
-                  <li>333</li>
-                  <li>{discountAmount}</li>
-                  <li>333</li>
-                  <li>333</li>
-                  <li>333</li>
-                  <li id='ordertotal'>333</li>
+                  <li> ₹{mrpvalue(carddetailshere)}</li>
+                  <li id='dis'>-₹{discountvalue(carddetailshere)}</li>
+                  <li> ₹{mrpvalue(carddetailshere)-discountvalue(carddetailshere)}</li>
+                  <li id='dis'>-₹{discount}</li>
+                  <li>₹{shipfee}</li>
+                  <li>₹{subtot(carddetailshere)}</li>
+                  <li>₹{gstfee}</li>
+                  <li id='ordertotal'>₹{ordertotal(carddetailshere)}</li>
                 </ul>
               </div>
             </div>

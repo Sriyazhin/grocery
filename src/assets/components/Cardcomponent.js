@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Cardcomponent({cardimagehere,titlehere,rectangle,ellipse,brandhere,count,handleAddClick,handleminusClick,productprice,oldmrp}) {
+function Cardcomponent({dustbin,handledeleteclick,cardimagehere,titlehere,rectangle,ellipse,brandhere,count,handleAddClick,handleminusClick,productprice,oldmrp}) {
   
   return (
     <div className='forcards'> 
@@ -11,7 +11,7 @@ function Cardcomponent({cardimagehere,titlehere,rectangle,ellipse,brandhere,coun
     <div className='cardtitleandveg'>
       <div className='cardtitle'>{titlehere}</div>
       <div className='vegsymbol'><img src={rectangle} className='rectangle' alt='rectangle'></img><img src={ellipse} className='ellipse' alt='ellipse  '></img></div>
-    </div>
+      </div>
 
     <div className='cardbrand'>{brandhere}</div>
 
@@ -21,7 +21,9 @@ function Cardcomponent({cardimagehere,titlehere,rectangle,ellipse,brandhere,coun
         <label for='addsub' className='numberofproducts'>{count}</label>
         <input type='button' name='addsub' className='plusbutton plus' value='+' onClick={handleAddClick} />
       </form>
-      
+      {/* <div className='minusbutton'><button className='minus'>-</button></div>
+      <div className='numberofproducts'>{numberofproducts}</div>
+      <div className='plusbutton'><button className='plus' onClick={addproduct}>+</button></div> */}
     </div>
 
 </div>
@@ -29,7 +31,9 @@ function Cardcomponent({cardimagehere,titlehere,rectangle,ellipse,brandhere,coun
 <div className='savefifteen'>Save 15%</div>
   <div className='price'>₹{productprice}</div>
 
-  <div className='oldmrp'>MRP ₹{oldmrp}
+  <div className='oldmrp'>
+    <div><button className='dustbinbutton' onClick={handledeleteclick}><img src={dustbin} className='dustbinimage' alt='dustbin'></img></button></div>
+    <div>MRP ₹{oldmrp}</div>
   <hr></hr>
   </div>
     </div>

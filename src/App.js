@@ -13,6 +13,7 @@ import returnimage from './assets/images/noreturn.png';
 import shippingimage from './assets/images/freedelivery.png';
 import paymentsimage from './assets/images/securepayment.png';
 import contactlessimage from './assets/images/contactlessdelivery.png';
+import dustbin from './assets/images/dustbin.png';
 
 import Cardcomponent from './assets/components/Cardcomponent';
 import Offercomponent from './assets/components/Offercomponent';
@@ -20,11 +21,11 @@ import Servicecomponent from './assets/components/Servicecomponent';
 import { useState } from 'react';
 
 function App() {
-const [carddetailshere,setCarddetailshere] = useState([{imagename:cardimageone,count:1,productprice:558,oldmrp:658,title:'Pedigree Chicken & Vegetables Adult Dry Dog Food 3 Kg',brand:'Brand : Pedigree'},
-  {imagename:cardimagetwo,productprice:600,count:1,oldmrp:700,title:'Pedigree Chicken & Vegetables Adult Dry Dog Food 10 Kg',brand:'Brand : Pedigree'},
-  {imagename:cardimagethree,productprice:800,count:1,oldmrp:900,title:'PURINA SUPERCOAT Puppy Dry Dog Food with Chicken 3 Kg',brand:'Brand : Purina'},
-  {imagename:cardimagefour,productprice:300,count:1,oldmrp:400,title:'Royal Canin Mini Starter New Born & Lactating Mother Dry Dog Food 1Kg',brand:'Brand : Royal Canin'},
-  {imagename:cardimagefive,productprice:900,count:1,oldmrp:950,title:'Drools Chicken & Egg Adult Dry Dog Food 3Kg',brand:'Brand : Drools'}]);
+const [carddetailshere,setCarddetailshere] = useState([{id:0,imagename:cardimageone,count:1,productprice:558,oldmrp:658,title:'Pedigree Chicken & Vegetables Adult Dry Dog Food 3 Kg',brand:'Brand : Pedigree'},
+  {id:1,imagename:cardimagetwo,productprice:600,count:1,oldmrp:700,title:'Pedigree Chicken & Vegetables Adult Dry Dog Food 10 Kg',brand:'Brand : Pedigree'},
+  {id:2,imagename:cardimagethree,productprice:800,count:1,oldmrp:900,title:'PURINA SUPERCOAT Puppy Dry Dog Food with Chicken 3 Kg',brand:'Brand : Purina'},
+  {id:3,imagename:cardimagefour,productprice:300,count:1,oldmrp:400,title:'Royal Canin Mini Starter New Born & Lactating Mother Dry Dog Food 1Kg',brand:'Brand : Royal Canin'},
+  {id:4,imagename:cardimagefive,productprice:900,count:1,oldmrp:950,title:'Drools Chicken & Egg Adult Dry Dog Food 3Kg',brand:'Brand : Drools'}]);
 
   const offerdetailshere = [{codehere:'SANCHU200',offerpercentage:'Get 50% Off',valuehere:200},
   {codehere:'SANCHU100',offerpercentage:'Get 20% Off',valuehere:100}];
@@ -44,6 +45,18 @@ const updateproduct = [...carddetailshere];
 updateproduct[index].count=updateproduct[index].count + 1;
 setCarddetailshere(updateproduct);
 };
+
+const handledelete = (cardid) => {
+  const getproduct = [...carddetailshere];
+  getproduct.splice(cardid, 1);
+  setCarddetailshere(getproduct);
+  };
+
+  // const handledelete = (cardid) => {
+  //   const getproduct = [...carddetailshere];
+    
+  //   setCarddetailshere(getproduct.filter(a=>a.id!==cardid));
+  //   };
 
 const handleminusClick = (index) => {
   const updateproduct = [...carddetailshere];
@@ -89,9 +102,9 @@ return mrp;
       <div className='myshoppingcart'>MY SHOPPING CART</div>
           <div className='cardsandcalculation'>
             <div className='cardshere'>
-            {carddetailshere.map(({imagename,count,productprice,title,brand,oldmrp},i) => {
+            {carddetailshere.map(({imagename,count,id,productprice,title,brand,oldmrp},i) => {
               return(
-                <Cardcomponent key={i} count={count} handleAddClick={()=>handleAddClick(i)} handleminusClick={()=>handleminusClick(i)} productprice={productprice}  oldmrp={oldmrp} cardimagehere={imagename} titlehere={title} brandhere={brand} rectangle={rectangle} ellipse={ellipse} />
+                <Cardcomponent key={i} count={count} cardimagehere={imagename} handledeleteclick={()=>handledelete(i)}  dustbin={dustbin} handleAddClick={()=>handleAddClick(i)} handleminusClick={()=>handleminusClick(i)} productprice={productprice}  oldmrp={oldmrp}  titlehere={title} brandhere={brand} rectangle={rectangle} ellipse={ellipse} />
               );
             })
             }
@@ -103,7 +116,7 @@ return mrp;
             <div className='offerpercent'><img src={offerpercent} height='20px' alt='offerpercent'></img></div>
             <div className='applycoupon'>Apply Coupons Code</div>
             <div className='vectorsymbol'><img src={vector} alt='vector'></img></div>
-            </div>
+            </div>  
 
             <div>
               {offerdetailshere.map(({codehere,offerpercentage,valuehere},i) => {
@@ -157,7 +170,6 @@ return mrp;
           )}
           
         </div>
-        
   </div>
   );
 }
